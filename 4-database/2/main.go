@@ -1,16 +1,21 @@
 package main
 
 import (
-	"fmt"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
+type Category struct {
+	ID   int `gorm:"primaryKey"`
+	Name string
+}
+
 type Product struct {
-	ID    int `gorm:"primaryKey"`
-	Name  string
-	Price float64
+	ID         int `gorm:"primaryKey"`
+	Name       string
+	Price      float64
+	CategoryID int
+	Category   Category
 	gorm.Model
 }
 
@@ -71,10 +76,10 @@ func main() {
 	// p.Name = "New Mouse"
 	// db.Save(&p)
 
-	var p2 Product
-	db.First(&p2, 1)
-	fmt.Println(p2.Name)
+	// var p2 Product
+	// db.First(&p2, 1)
+	// fmt.Println(p2.Name)
 
-	db.Delete(&p2)
+	// db.Delete(&p2)
 
 }

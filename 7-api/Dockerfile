@@ -1,12 +1,8 @@
+# TODO: hot reload
 FROM golang:1.19
 
 WORKDIR /app
 
-RUN go install github.com/cosmtrek/air@latest
+RUN apt-get update && apt-get install sqlite3
 
-COPY go.mod go.sum ./
-RUN go mod download
-
-EXPOSE 8080
-
-CMD ["air"]
+CMD ["tail", "-f", "/dev/null"]
